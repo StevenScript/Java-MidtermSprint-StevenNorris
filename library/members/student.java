@@ -3,7 +3,7 @@ package library.members;
 /**
  * Represents a student patron.
  */
-public class student extends member {
+public class student extends Member {
 
     public student(String name, String address) {
         super(name, address);

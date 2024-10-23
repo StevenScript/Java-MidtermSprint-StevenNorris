@@ -5,11 +5,9 @@ package library.members;
  * This class provides the basic information for a member, such as their name and address.
  * It serves as a foundation for various types of members (e.g., regular members, VIP members, etc.).
  */
-public abstract class member {
-    // The name of the library member
-    protected String name;
-    
-    // The address of the library member
+public abstract class Member {
+    // The name and address of the library member
+    protected String name;    
     protected String address;
 
     /**
@@ -18,7 +16,7 @@ public abstract class member {
      * @param name The name of the member.
      * @param address The address of the member.
      */
-    public member(String name, String address) {
+    public Member(String name, String address) {
         this.name = name;
         this.address = address;
     }
@@ -26,7 +24,7 @@ public abstract class member {
     /**
      * Returns the name of the library member.
      * 
-     * @return A String representing the member's name.
+     * @return String - representing the member's name.
      */
     public String getName() {
         return name;
@@ -35,7 +33,7 @@ public abstract class member {
     /**
      * Returns the address of the library member.
      * 
-     * @return A String representing the member's address.
+     * @return String - the member's address.
      */
     public String getAddress() {
         return address;
