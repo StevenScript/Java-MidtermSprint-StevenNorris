@@ -1,5 +1,8 @@
 package library;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import library.items.Book;
 import library.models.Author;
 import library.members.Student;
@@ -18,8 +21,10 @@ public class Test {
         Author author = new Author("Mark Z. Danielewski", "1775-12-16");
         library.addAuthor(author);
 
-        // Create and add book
-        Book book = new Book("1", "House of Leaves");
+        // Create and add book with its author
+        List<Author> authors = new ArrayList<>();
+        authors.add(author);
+        Book book = new Book("1", "House of Leaves", authors);
         library.addItem(book);
 
         // Create and add a student member

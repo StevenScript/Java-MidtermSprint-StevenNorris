@@ -1,13 +1,22 @@
 package library.items;
 
+import java.util.List;
+
+import library.models.Author;
+
 /**
  * Represents a book in the library.
  */
 public class Book extends LibraryItem {
+    private List<Author> authors;
 
-    public Book(String id, String title) {
+    public Book(String id, String title, List<Author> authors) {
         super(id, title);
+        this.authors = authors;
     }
 
-    // Additional methods will be added, this is for defining base structure
+    // Getter for authors
+    public List<Author> getAuthors() {
+        return authors;
+    }
 }
