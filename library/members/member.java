@@ -1,5 +1,10 @@
 package library.members;
 
+import library.items.LibraryItem;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Abstract base class representing a library member.
  * This class provides the basic information for a member, such as their name and address.
@@ -10,6 +15,11 @@ public abstract class Member {
     protected String name;    
     protected String address;
 
+    // A list to track items borrowed by the member
+    protected List<LibraryItem> borrowedItems;
+
+
+
     /**
      * Constructor to initialize a Member object with a name and an address.
      * 
@@ -19,6 +29,7 @@ public abstract class Member {
     public Member(String name, String address) {
         this.name = name;
         this.address = address;
+        this.borrowedItems = new ArrayList<>();
     }
 
     /**
@@ -38,4 +49,15 @@ public abstract class Member {
     public String getAddress() {
         return address;
     }
+
+
+    /**
+     * Returns the address of the library member.
+     * 
+     * @return String - List LibraryItem objects refering to member's borrowed items
+     */
+    public List<LibraryItem> getBorrowedItems() {
+        return borrowedItems;
+    }
+
 }
