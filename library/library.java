@@ -21,9 +21,9 @@ public class library {
     // List of all library members (able to borrow)
     private List<Member> members;
 
-    /**
-     * Constructor to initialize the library with empty lists for items, authors, and members.
-     */
+/**
+ * Constructor to initialize the library with empty lists for items, authors, and members.
+ */
     public library() {
         items = new ArrayList<>();
         authors = new ArrayList<>();
@@ -58,6 +58,32 @@ public class library {
     }
 
     /**
+     * Deletes a library item from the collection.
+     * @param item The LibraryItem to delete.
+     */
+    public void deleteItem(LibraryItem item) {
+        items.remove(item);
+    }
+
+
+    /**
+     * Deletes an author from the collection.
+     * @param author The Author to delete.
+     */
+    public void deleteAuthor(Author author) {
+        authors.remove(author);
+    }
+
+    /**
+     * Deletes a Member from the collection.
+     * @param patron The member to delete.
+     */
+    public void deleteMember(Member member) {
+        members.remove(member);
+    }
+
+
+    /**
      * Returns the list of all library items.
      * 
      * @return A list of LibraryItem objects.
@@ -82,5 +108,46 @@ public class library {
      */
     public List<Member> getMembers() {
         return members;
+    }
+    
+    
+    
+// Borrowing and Returning Items
+
+    /**
+     * Allows a library member to borrow an item.
+     * Checks if the item is available by checking the number of copies.
+     * If able, it lowers the number of copies by one and adds the item 
+     * to the member's list of borrowed items.
+     * 
+     * @param member The member borrowing the item.
+     * @param item The item to borrow.
+     */
+    public void borrowItem(Member member, LibraryItem item) {
+        if (item.getNumberOfCopies() > 0) {
+            item.setNumberOfCopies(item.getNumberOfCopies() - 1);
+            member.getBorrowedItems().add(item);
+            System.out.println(member.getName() + " borrowed " + item.getTitle());
+        } else {
+            System.out.println("Item not available.");
+        }
+    }
+
+    /**
+     * Allows a library member to return an item.
+     * Checks if the member has borrowed the item. If so, it increases the 
+     * number of copies by one and removes the item from the member's borrowed list.
+     * 
+     * @param member The library member returning the item.
+     * @param item The library item being returned.
+     */
+    public void returnItem(Member member, LibraryItem item) {
+        if (member.getBorrowedItems().contains(item)) {
+            item.setNumberOfCopies(item.getNumberOfCopies() + 1);
+            member.getBorrowedItems().remove(item);
+            System.out.println(member.getName() + " returned " + item.getTitle());
+        } else {
+            System.out.println(member.getName() + " did not borrow " + item.getTitle());
+        }
     }
 }

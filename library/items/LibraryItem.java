@@ -9,7 +9,7 @@ public abstract class LibraryItem {
       // Unique ID for the library item
     protected String id;
     protected String title;
-
+    protected int numberOfCopies;
 
     /**
      * Constructor to initialise a LibraryItem with an ID and title.
@@ -17,9 +17,10 @@ public abstract class LibraryItem {
      * @param id The unique ID for the item
      * @param title The title of the item
      */
-    public LibraryItem(String id, String title) {
+    public LibraryItem(String id, String title, int numberOfCopies) {
         this.id = id;
         this.title = title;
+        this.numberOfCopies = numberOfCopies;
     }
 
 
@@ -42,6 +43,18 @@ public abstract class LibraryItem {
      */
     public String getTitle() {
         return title;
+    }
+
+
+    public int getNumberOfCopies() {
+        return numberOfCopies;
+    }
+
+
+     // Setters
+
+    public void setNumberOfCopies(int numberOfCopies) {
+        this.numberOfCopies = numberOfCopies;
     }
 }
 
