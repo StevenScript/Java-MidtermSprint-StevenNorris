@@ -14,7 +14,7 @@ public abstract class Member {
     // The name and address of the library member
     protected String name;    
     protected String address;
-
+    protected String phoneNumber;
     // A list to track items borrowed by the member
     protected List<LibraryItem> borrowedItems;
 

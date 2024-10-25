@@ -1,5 +1,6 @@
 package library.models;
 
+
 /**
  * This class represents an author in the library system.
  * Each author has a name and a date of birth.
@@ -19,7 +20,7 @@ public class Author {
      */
     public Author(String name, String dateOfBirth) {
         this.name = name;
-        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = dateOfBirth;         
     }
 
     /**
