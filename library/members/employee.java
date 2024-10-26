@@ -4,8 +4,8 @@ package library.members;
  * Represents an employee
  */
 
-public class employee extends Member {
-    public employee(String name, String address, String phoneNumber) {
+public class Employee extends Member {
+    public Employee(String name, String address, String phoneNumber) {
         super(name, address, phoneNumber);
     }
     

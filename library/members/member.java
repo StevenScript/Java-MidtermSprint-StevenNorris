@@ -1,5 +1,6 @@
 package library.members;
 
+import library.Library;
 import library.items.LibraryItem;
 
 import java.util.ArrayList;
@@ -97,6 +98,18 @@ public abstract class Member {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
+    }
+
+    public List<LibraryItem> searchLibraryByTitle(Library library, String title) {
+        return library.searchItemsByTitle(title);
+    }
+
+    public List<LibraryItem> searchLibraryByAuthor(Library library, String authorName) {
+        return library.searchItemsByAuthor(authorName);
+    }
+
+    public LibraryItem searchLibraryByISBN(Library library, String isbn) {
+        return library.searchItemByISBN(isbn);
     }
 
 }
