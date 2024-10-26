@@ -79,4 +79,8 @@ public abstract class LibraryItem {
     public String getPublisher() {
         return publisher;
     }
+
+    
+    public abstract void updateDetailsFrom(LibraryItem updatedItem);
+
 }

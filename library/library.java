@@ -115,8 +115,45 @@ public class Library {
     public List<Member> getMembers() {
         return members;
     }
+
+    // Methods to edit items
+    public void editItem(String itemId, LibraryItem updatedItem) {
+        for (LibraryItem item : items) {
+            if (item.getId().equals(itemId)) {
+                // Update the existing item's details
+                item.updateDetailsFrom(updatedItem);
+                System.out.println("Item updated successfully.");
+                return;
+            }
+        }
+        System.out.println("Item not found.");
+    }
+
+// Methods to edit authors
+public void editAuthor(Author existingAuthor, Author updatedAuthor) {
+    int index = authors.indexOf(existingAuthor);
+    if (index != -1) {
+        Author author = authors.get(index);
+        author.updateDetails(updatedAuthor.getName(), updatedAuthor.getDateOfBirth());
+        System.out.println("Author updated successfully.");
+    } else {
+        System.out.println("Author not found.");
+    }
+}
+
+// Methods to edit Members
+public void editMember(Member existingPatron, Member updatedPatron) {
+    int index = members.indexOf(existingPatron);
+    if (index != -1) {
+        Member patron = members.get(index);
+        patron.updateDetails(updatedPatron.getName(), updatedPatron.getAddress(), updatedPatron.getPhoneNumber());
+        System.out.println("Patron updated successfully.");
+    } else {
+        System.out.println("Patron not found.");
+    }
+}
     
-// Borrowing and Returning Items
+//------------Borrowing and Returning Items------------//
 
     /**
      * Allows a library member to borrow a specific quantity of an item.
