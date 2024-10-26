@@ -116,6 +116,9 @@ public class Library {
         return members;
     }
 
+//------------Editing------------//
+
+
     // Methods to edit items
     public void editItem(String itemId, LibraryItem updatedItem) {
         for (LibraryItem item : items) {
@@ -129,29 +132,29 @@ public class Library {
         System.out.println("Item not found.");
     }
 
-// Methods to edit authors
-public void editAuthor(Author existingAuthor, Author updatedAuthor) {
-    int index = authors.indexOf(existingAuthor);
-    if (index != -1) {
-        Author author = authors.get(index);
-        author.updateDetails(updatedAuthor.getName(), updatedAuthor.getDateOfBirth());
-        System.out.println("Author updated successfully.");
-    } else {
-        System.out.println("Author not found.");
+    // Methods to edit authors
+    public void editAuthor(Author existingAuthor, Author updatedAuthor) {
+        int index = authors.indexOf(existingAuthor);
+        if (index != -1) {
+            Author author = authors.get(index);
+            author.updateDetails(updatedAuthor.getName(), updatedAuthor.getDateOfBirth());
+            System.out.println("Author updated successfully.");
+        } else {
+            System.out.println("Author not found.");
+        }
     }
-}
 
-// Methods to edit Members
-public void editMember(Member existingPatron, Member updatedPatron) {
-    int index = members.indexOf(existingPatron);
-    if (index != -1) {
-        Member patron = members.get(index);
-        patron.updateDetails(updatedPatron.getName(), updatedPatron.getAddress(), updatedPatron.getPhoneNumber());
-        System.out.println("Patron updated successfully.");
-    } else {
-        System.out.println("Patron not found.");
+    // Methods to edit Members
+    public void editMember(Member existingPatron, Member updatedPatron) {
+        int index = members.indexOf(existingPatron);
+        if (index != -1) {
+            Member patron = members.get(index);
+            patron.updateDetails(updatedPatron.getName(), updatedPatron.getAddress(), updatedPatron.getPhoneNumber());
+            System.out.println("Patron updated successfully.");
+        } else {
+            System.out.println("Patron not found.");
+        }
     }
-}
     
 //------------Borrowing and Returning Items------------//
 
@@ -229,5 +232,53 @@ public void editMember(Member existingPatron, Member updatedPatron) {
             System.out.println(member.getName() + " did not borrow " + item.getTitle() + " or insufficient copies to return.");
         }
     }
+
+    /**
+ * Searches for library items by title.
+ * @param title The title to search for.
+ * @return A list of matching LibraryItem objects.
+ */
+public List<LibraryItem> searchItemsByTitle(String title) {
+    List<LibraryItem> results = new ArrayList<>();
+    for (LibraryItem item : items) {
+        if (item.getTitle().equalsIgnoreCase(title)) {
+            results.add(item);
+        }
+    }
+    return results;
+}
+
+/**
+ * Searches for library items by author name.
+ * @param authorName The author's name to search for.
+ * @return A list of matching LibraryItem objects.
+ */
+public List<LibraryItem> searchItemsByAuthor(String authorName) {
+    List<LibraryItem> results = new ArrayList<>();
+    for (LibraryItem item : items) {
+        for (Author author : item.getAuthors()) {
+            if (author.getName().equalsIgnoreCase(authorName)) {
+                results.add(item);
+                break; // Break to avoid adding the same item multiple times if multiple authors match
+            }
+        }
+    }
+    return results;
+}
+
+/**
+ * Searches for a library item by ISBN.
+ * @param isbn The ISBN to search for.
+ * @return The matching LibraryItem object, or null if not found.
+ */
+public LibraryItem searchItemByISBN(String isbn) {
+    for (LibraryItem item : items) {
+        if (item.getIsbn().equalsIgnoreCase(isbn)) {
+            return item;
+        }
+    }
+    return null;
+}
+
 }
 
