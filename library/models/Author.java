@@ -1,5 +1,10 @@
 package library.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import library.items.LibraryItem;
+
 /**
  * This class represents an author in the library system.
  * Each author has a name and a date of birth.
@@ -10,6 +15,9 @@ public class Author {
     
     // The date of birth of the author, stored as a String
     private String dateOfBirth;
+    private List<LibraryItem> writtenItems;
+    
+ 
 
     /**
      * Constructor to initialize the Author object with a name and date of birth
@@ -20,6 +28,7 @@ public class Author {
     public Author(String name, String dateOfBirth) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
+        this.writtenItems = new ArrayList<>();        
     }
 
     /**
@@ -39,4 +48,19 @@ public class Author {
     public String getDateOfBirth() {
         return dateOfBirth;
     }
+
+    public List<LibraryItem> getWrittenItems() {
+        return writtenItems;
+    }
+
+    // New method to update author details
+    /**
+     * Updates the author's details.
+     * @param name The new name of the author.
+     * @param dateOfBirth The new date of birth.
+     */
+    public void updateDetails(String name, String dateOfBirth) {
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+}
 }

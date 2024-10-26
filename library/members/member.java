@@ -11,10 +11,11 @@ import java.util.List;
  * It serves as a foundation for various types of members (e.g., regular members, VIP members, etc.).
  */
 public abstract class Member {
-    // The name and address of the library member
+    // The Personal Details of the library member
     protected String name;    
     protected String address;
-
+    protected String phoneNumber;
+    
     // A list to track items borrowed by the member
     protected List<LibraryItem> borrowedItems;
 
@@ -26,9 +27,10 @@ public abstract class Member {
      * @param name The name of the member.
      * @param address The address of the member.
      */
-    public Member(String name, String address) {
+    public Member(String name, String address, String phoneNumber)  {
         this.name = name;
         this.address = address;
+        this.phoneNumber = phoneNumber;
         this.borrowedItems = new ArrayList<>();
     }
 
@@ -51,6 +53,16 @@ public abstract class Member {
     }
 
 
+     /**
+     * Returns the Phone Number of the library member.
+     * 
+     * @return String - the member's phone number.
+     */
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+
     /**
      * Returns the address of the library member.
      * 
@@ -58,6 +70,33 @@ public abstract class Member {
      */
     public List<LibraryItem> getBorrowedItems() {
         return borrowedItems;
+    }
+
+    /**
+     * Searches borrowed items by title.
+     * @param title The title to search for.
+     * @return A list of matching LibraryItem objects.
+     */
+    public List<LibraryItem> searchBorrowedItemsByTitle(String title) {
+        List<LibraryItem> results = new ArrayList<>();
+        for (LibraryItem item : borrowedItems) {
+            if (item.getTitle().equalsIgnoreCase(title)) {
+                results.add(item);
+            }
+        }
+        return results;
+    }
+
+    /**
+     * Updates the patron's details.
+     * @param name The new name of the patron.
+     * @param address The new address.
+     * @param phoneNumber The new phone number.
+     */
+    public void updateDetails(String name, String address, String phoneNumber) {
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
 }

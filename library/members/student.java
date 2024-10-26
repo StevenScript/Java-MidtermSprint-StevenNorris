@@ -5,8 +5,8 @@ package library.members;
  */
 public class Student extends Member {
 
-    public Student(String name, String address) {
-        super(name, address);
+    public Student(String name, String address, String phoneNumber) {
+        super(name, address, phoneNumber);
     }
 
     // Additional attributes and methods for Student will be added later

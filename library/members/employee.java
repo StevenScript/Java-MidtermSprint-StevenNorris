@@ -5,8 +5,8 @@ package library.members;
  */
 
 public class employee extends Member {
-    public employee(String name, String address) {
-        super(name, address);
+    public employee(String name, String address, String phoneNumber) {
+        super(name, address, phoneNumber);
     }
     
 }
