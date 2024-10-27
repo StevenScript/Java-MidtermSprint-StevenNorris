@@ -5,9 +5,10 @@ import java.util.Objects;
 import library.models.Author;
 
 /**
- * Base abstract class for library items.
- * Serves as a foundation for items that can be stored in the library
- * Each item has an ID and a title.
+ * Abstract base class for all library items.
+ * This class serves as the foundation for any item that can be stored in the library,
+ * such as books, periodicals, or digital media. Each item has a unique ID, title, authors,
+ * ISBN, and publisher.
  */
 public abstract class LibraryItem {
     protected String id;
@@ -17,10 +18,13 @@ public abstract class LibraryItem {
     protected String publisher;
 
     /**
-     * Constructor to initialise a LibraryItem with an ID and title.
+     * Constructor to initialize a LibraryItem with its ID, title, authors, ISBN, and publisher.
      * 
-     * @param id The unique ID for the item
-     * @param title The title of the item
+     * @param id The unique ID for the library item.
+     * @param title The title of the library item.
+     * @param authors The list of authors who contributed to the library item.
+     * @param isbn The ISBN of the library item (if applicable).
+     * @param publisher The publisher of the library item.
      */
     public LibraryItem(String id, String title, List<Author> authors, String isbn, String publisher) {
         this.id = id;
@@ -81,10 +85,21 @@ public abstract class LibraryItem {
     }
 
     
-     // Abstract method to update item details
+     /**
+     * Abstract method to update the details of the library item.
+     * This method is meant to be implemented by subclasses, allowing them to update
+     * their details from another LibraryItem instance.
+     * 
+     * @param updatedItem The LibraryItem object containing the updated details.
+     */
      public abstract void updateDetailsFrom(LibraryItem updatedItem);
 
-     // Override equals and hashCode based on id
+     /**
+     * Overrides the equals method to compare LibraryItem objects based on their unique ID.
+     * 
+     * @param o The object to be compared.
+     * @return True if the objects are equal, otherwise false.
+     */
      @Override
      public boolean equals(Object o) {
          if (this == o) return true;
@@ -95,6 +110,11 @@ public abstract class LibraryItem {
          return id.equals(that.id);
      }
  
+     /**
+     * Overrides the hashCode method to generate a hash code based on the item's unique ID.
+     * 
+     * @return The hash code value for the item.
+     */
      @Override
      public int hashCode() {
          return Objects.hash(id);

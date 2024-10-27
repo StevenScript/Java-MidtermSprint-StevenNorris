@@ -224,7 +224,7 @@ public void returnItem(Member member, LibraryItem item, int quantity) {
 }
 
 
-    /**
+/**
  * Searches for library items by title.
  * @param title The title to search for.
  * @return A list of matching LibraryItem objects.

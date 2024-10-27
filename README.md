@@ -150,7 +150,7 @@ Below is an explanation of the main classes and their functionalities:
   - `addItem(LibraryItem item)`, `addAuthor(Author author)`, `addMember(Member member)`: Methods to add entities.
   - `editItem(String itemId, LibraryItem updatedItem)`: Edits item details.
   - `editAuthor(Author existingAuthor, Author updatedAuthor)`: Edits author details.
-  - `editMember(Member existingMember, Member updatedMember)`: Edits patron details.
+  - `editMember(Member existingMember, Member updatedMember)`: Edits member details.
   - `borrowItem(Member member, LibraryItem item, int quantity)`: Facilitates item borrowing.
   - `returnItem(Member member, LibraryItem item, int quantity)`: Facilitates item returning.
   - `searchItemsByTitle(String title)`, `searchItemsByAuthor(String authorName)`, `searchItemByISBN(String isbn)`: Search functionalities.
@@ -366,7 +366,7 @@ While my project does not use a database, here's how it would look theoretically
 - **Associations**:
   - An author can write multiple items (One-to-Many).
   - An item can have multiple authors (Many-to-Many, handled via a join table `ItemAuthors`).
-  - A patron can borrow multiple items (One-to-Many).
+  - A member can borrow multiple items (One-to-Many).
 
 #### **Entity Relationship Diagram**
 
@@ -375,7 +375,7 @@ While my project does not use a database, here's how it would look theoretically
      |
      *----1 [LibraryItem]
 
-[Patron] 1----* [BorrowedItems] *----1 [LibraryItem]
+[Member] 1----* [BorrowedItems] *----1 [LibraryItem]
 ```
 
 ### **2.7 Getting the Source Code from GitHub Repository**
@@ -420,7 +420,7 @@ Follow these steps to install and run the Library Management System application.
 2. **Navigate to the Project Directory**:
 
    ```bash
-   cd LibraryManagementSystem
+   cd Java-MidtermSprint-StevenNorris
    ```
 
 3. **Compile the Source Code**:
