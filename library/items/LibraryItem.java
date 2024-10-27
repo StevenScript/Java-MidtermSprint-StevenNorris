@@ -1,7 +1,7 @@
 package library.items;
 
 import java.util.List;
-
+import java.util.Objects;
 import library.models.Author;
 
 /**
@@ -81,6 +81,23 @@ public abstract class LibraryItem {
     }
 
     
-    public abstract void updateDetailsFrom(LibraryItem updatedItem);
+     // Abstract method to update item details
+     public abstract void updateDetailsFrom(LibraryItem updatedItem);
 
-}
+     // Override equals and hashCode based on id
+     @Override
+     public boolean equals(Object o) {
+         if (this == o) return true;
+         if (o == null || getClass() != o.getClass()) return false;
+ 
+         LibraryItem that = (LibraryItem) o;
+ 
+         return id.equals(that.id);
+     }
+ 
+     @Override
+     public int hashCode() {
+         return Objects.hash(id);
+     }
+ }
+

@@ -1,11 +1,8 @@
 package library.members;
 
-import library.Library;
 import library.items.LibraryItem;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.Map;
+import java.util.HashMap;
 /**
  * Abstract base class representing a library member.
  * This class provides the basic information for a member, such as their name and address.
@@ -16,9 +13,8 @@ public abstract class Member {
     protected String name;    
     protected String address;
     protected String phoneNumber;
+    protected Map<LibraryItem, Integer> borrowedItems;
     
-    // A list to track items borrowed by the member
-    protected List<LibraryItem> borrowedItems;
 
 
 
@@ -32,7 +28,7 @@ public abstract class Member {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.borrowedItems = new ArrayList<>();
+         this.borrowedItems = new HashMap<>();
     }
 
     /**
@@ -69,24 +65,29 @@ public abstract class Member {
      * 
      * @return String - List LibraryItem objects refering to member's borrowed items
      */
-    public List<LibraryItem> getBorrowedItems() {
+    public Map<LibraryItem, Integer> getBorrowedItems() {
         return borrowedItems;
     }
 
-    /**
-     * Searches borrowed items by title.
-     * @param title The title to search for.
-     * @return A list of matching LibraryItem objects.
-     */
-    public List<LibraryItem> searchBorrowedItemsByTitle(String title) {
-        List<LibraryItem> results = new ArrayList<>();
-        for (LibraryItem item : borrowedItems) {
-            if (item.getTitle().equalsIgnoreCase(title)) {
-                results.add(item);
-            }
-        }
-        return results;
+
+    // Methods to manage borrowed items
+    public void borrowItem(LibraryItem item, int quantity) {
+        borrowedItems.put(item, borrowedItems.getOrDefault(item, 0) + quantity);
     }
+
+    public void returnItem(LibraryItem item, int quantity) {
+        if (borrowedItems.containsKey(item)) {
+            int currentQuantity = borrowedItems.get(item);
+            if (currentQuantity <= quantity) {
+                borrowedItems.remove(item);
+            } else {
+                borrowedItems.put(item, currentQuantity - quantity);
+            }
+        } else {
+            System.out.println(name + " has not borrowed " + item.getTitle());
+        }
+    }
+    
 
     /**
      * Updates the patron's details.
@@ -99,17 +100,6 @@ public abstract class Member {
         this.address = address;
         this.phoneNumber = phoneNumber;
     }
-
-    public List<LibraryItem> searchLibraryByTitle(Library library, String title) {
-        return library.searchItemsByTitle(title);
-    }
-
-    public List<LibraryItem> searchLibraryByAuthor(Library library, String authorName) {
-        return library.searchItemsByAuthor(authorName);
-    }
-
-    public LibraryItem searchLibraryByISBN(Library library, String isbn) {
-        return library.searchItemByISBN(isbn);
-    }
-
 }
+
+
